@@ -134,4 +134,18 @@ suite('American to British Unit Tests', () => {
         const translation = translator.translate({ locale, text });
         assert.equal(translation, solution, "Correct translation")
     });
+    test("Prof Joyner of King's College, London. to American English", function () {
+        const text = "Prof Joyner of King's College, London.";
+        const locale = 'british-to-american';
+        const solution = "<span class=\"highlight\">Prof.</span> Joyner of King's College, London.";
+        const translation = translator.translate({ locale, text });
+        assert.equal(translation, solution, "Correct translation")
+    });
+    test("Tea time is usually around 4 or 4.30. to American English", function () {
+        const text = "Tea time is usually around 4 or 4.30.";
+        const locale = 'british-to-american';
+        const solution = "Tea time is usually around 4 or <span class=\"highlight\">4:30</span>.";
+        const translation = translator.translate({ locale, text });
+        assert.equal(translation, solution, "Correct translation")
+    });
 });

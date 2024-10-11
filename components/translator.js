@@ -26,19 +26,19 @@ class Translator {
         return this.capitalize(text);
     }
     translatingFromBritishToAmerican(text) {
-        console.log(text)
-        const americanWordsAndSpellingArray = [americanToBritishSpelling, americanToBritishTitles];
         for (let key in britishOnly) {
             let regex = new RegExp(`(?<=\\s|^)(${key})\\b`, "gi");
             text = text.replaceAll(regex, `<span class="highlight">${britishOnly[key]}</span>`);
         }
-        console.log(text)
-        americanWordsAndSpellingArray.forEach(data => {
-            for (let key in data) {
-                let regex = new RegExp(`(${data[key]})\\b`, "gi");
-                text = text.replaceAll(regex, `<span class="highlight">${key}</span>`);
-            }
-        });
+        for (let key in americanToBritishSpelling) {
+            let regex = new RegExp(`(${americanToBritishSpelling[key]})\\b`, "gi");
+            text = text.replaceAll(regex, `<span class="highlight">${key}</span>`);
+        }
+        for (let key in americanToBritishTitles) {
+            let regex = new RegExp(`(${americanToBritishTitles[key]})\\b`, "gi");
+            const americanTitle = key[0].toUpperCase() + key.substring(1);
+            text = text.replaceAll(regex, `<span class="highlight">${americanTitle}</span>`);
+        }
         text = this.getBritishTimeAndFormatToAmerican(text)
         return this.capitalize(text);
     }
