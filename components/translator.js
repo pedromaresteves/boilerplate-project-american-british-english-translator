@@ -18,7 +18,7 @@ class Translator {
             }
         });
         for (let key in americanToBritishTitles) {
-            let regex = new RegExp(`(${key})`, "gi");
+            let regex = new RegExp(`(${key.replace(".", "\\.")})`, "gi");
             const britishTitle = americanToBritishTitles[key][0].toUpperCase() + americanToBritishTitles[key].substring(1);
             text = text.replaceAll(regex, `<span class="highlight">${britishTitle}</span>`)
         }
