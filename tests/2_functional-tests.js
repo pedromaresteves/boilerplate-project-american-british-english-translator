@@ -40,7 +40,7 @@ suite('Functional Tests', () => {
     });
     test('Missing text field request', function (done) {
         const locale = "american-to-british";
-        const expectedError = `No text to translate`;
+        const expectedError = `Required field(s) missing`;
         chai.request(server).post("/api/translate").send({ locale })
             .then(res => {
                 assert.equal(res.body.error, expectedError, "Correct translation")
@@ -49,7 +49,7 @@ suite('Functional Tests', () => {
     });
     test('Missing locale field request', function (done) {
         const text = "You're my favorite";
-        const expectedError = `Invalid value for locale field`;
+        const expectedError = `Required field(s) missing`;
         chai.request(server).post("/api/translate").send({ text })
             .then(res => {
                 assert.equal(res.body.error, expectedError, "Correct translation")
