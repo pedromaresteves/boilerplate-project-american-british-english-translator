@@ -1,0 +1,1 @@
+module.exports = ['american-to-british', 'british-to-american'];
