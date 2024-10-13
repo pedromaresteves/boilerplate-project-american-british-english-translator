@@ -59,12 +59,15 @@ class Translator {
         return text;
     }
     getBritishTimeAndFormatToAmerican(text) {
-        const regex = /(?!\d).(?=\d)/gi;
+        const regex = /(?!\d)\.(?=\d)/gi;
         const allTimeMatches = Array.from(text.matchAll(regex));
         if (!allTimeMatches.length) return text;
         const allTimes = allTimeMatches.map(item => {
-            return text.substring(item.index - 2, item.index + 3)
+            let digitsBeforeDot = 1;
+            if (Number(text[item.index - 2])) digitsBeforeDot += 1
+            return text.substring(item.index - digitsBeforeDot, item.index + 3)
         });
+
         allTimes.forEach(item => {
             let formattedTime = item.replace(".", ":")
             text = text.replace(item, `<span class="highlight">${formattedTime}</span>`)

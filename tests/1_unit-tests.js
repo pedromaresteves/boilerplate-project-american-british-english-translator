@@ -149,3 +149,38 @@ suite('American to British Unit Tests', () => {
         assert.equal(translation, solution, "Correct translation")
     });
 });
+
+suite('Highlight Unit Tests', () => {
+    test('Mangoes are my favorite fruit. gets highlighted', function () {
+        const text = "Mangoes are my favorite fruit.";
+        const locale = 'american-to-british';
+        const translation = translator.translate({ locale, text });
+        const charBeforeTranslatedWord = translation[translation.indexOf("favourite") - 1]
+        assert.equal(charBeforeTranslatedWord, ">", "Correct translation")
+        assert.equal(translation.includes("highlight"), true, "Correct translation")
+    });
+    test('I ate yogurt for breakfast. gets highlighted', function () {
+        const text = "I ate yogurt for breakfast.";
+        const locale = 'american-to-british';
+        const translation = translator.translate({ locale, text });
+        const charBeforeTranslatedWord = translation[translation.indexOf("yoghurt") - 1]
+        assert.equal(charBeforeTranslatedWord, ">", "Correct translation")
+        assert.equal(translation.includes("highlight"), true, "Correct translation")
+    });
+    test('We watched the footie match for a while. gets highlighted', function () {
+        const text = "We watched the footie match for a while.";
+        const locale = 'british-to-american';
+        const translation = translator.translate({ locale, text });
+        const charBeforeTranslatedWord = translation[translation.indexOf("soccer") - 1]
+        assert.equal(charBeforeTranslatedWord, ">", "Correct translation")
+        assert.equal(translation.includes("highlight"), true, "Correct translation")
+    });
+    test('Paracetamol takes up to an hour to work. gets highlighted', function () {
+        const text = "Paracetamol takes up to an hour to work.";
+        const locale = 'british-to-american';
+        const translation = translator.translate({ locale, text });
+        const charBeforeTranslatedWord = translation[translation.indexOf("Tylenol") - 1]
+        assert.equal(charBeforeTranslatedWord, ">", "Correct translation")
+        assert.equal(translation.includes("highlight"), true, "Correct translation")
+    });
+});
