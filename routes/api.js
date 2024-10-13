@@ -14,6 +14,6 @@ module.exports = function (app) {
       if (!validLocales.includes(req.body.locale)) return res.send({ error: 'Invalid value for locale field' });
       const translation = translator.translate(req.body);
       if (req.body.text !== translation) translatedText = translation
-      return res.send({ translation: translatedText })
+      return res.send({ text: req.body.text, translation: translatedText })
     });
 };
